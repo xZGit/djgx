@@ -1,0 +1,11 @@
+node_modules
+public/bower_components
+start.sh
+.avoscloud
+
+# VIM
+*~
+*.swp
+.avoscloud/
+.avoscloud/
+.avoscloud/

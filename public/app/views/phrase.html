@@ -1,0 +1,95 @@
+<a role="button" ng-click="editObject()" data-toggle="modal" data-target="#myModal" class="btn btn-primary r" >新建回复</a>
+
+
+<div class="fix">
+    <table class="table table-striped table-condensed table-bordered table-hover">
+        <thead>
+        <tr style="background-color: #0081c2; color: #FFFFFF">
+            <td ng-repeat="attr in showAttrs" ng-bind="attr.zhCn"></td>
+            <td >操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="model in models">
+            <td ng-repeat="attr in showAttrs" ng-bind="model[attr.en]" >
+            </td>
+            <td><a class="btn btn-default"  role="button"  ng-click="editObject(model)" data-toggle="modal" data-target="#myModal">编辑</a>
+                <!--<a class="btn btn-danger"   role="button" data-toggle="modal" data-target="#deleteModal"ng-click="showRemove(model)" role="button" >删除</a>-->
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">x</button>
+                <h3 id="userMgrLabel">编辑回复</h3>
+            </div>
+            <div class="modal-body">
+
+                <form name="userForm" class="form-horizontal" novalidate role="form">
+                    <div class="form-group" show-errors>
+                        <label class="col-sm-2 control-label">问题</label>
+                        <div class="col-sm-10">
+                            <input type="text" ng-model="editKey.question" name="name" class="form-control" required>
+                            <p class="help-block" ng-if="userForm.name.$error.required">必填</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label class="col-sm-2 control-label">答案</label>
+                        <div class="col-sm-10">
+                            <textarea rows="3" ng-model="editKey.answer" name="name" class="form-control">
+                                </textarea>
+                          </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                <button class="btn btn-primary"
+                        ng-click="save(editKey)"
+                >保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">x</button>
+                <h3 id="userMgrLabel">删除</h3>
+            </div>
+            <div class="modal-body">
+                <h4>是否删除{{deleteName}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                <button class="btn btn-primary"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                        ng-click="remove(deleteObject)"
+                >确定</button>
+            </div>
+        </div>
+    </div>
+</div>

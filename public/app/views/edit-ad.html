@@ -1,0 +1,139 @@
+<h1>{{editType}}投产参数</h1>
+<form name="userForm" novalidate>
+
+    <div class="form-group">
+        <label class="control-label db">日期:</label>
+        <div  datetimepicker id="dt" ng-model="editOj.date"  class='input-group date'>
+            <input type='text'   class="input-group-addon form-control lan" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">投放渠道</label>
+        <input type="text" class="form-control" name="name" ng-model="editOj.way" />
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label">广告主名称</label>
+        <input type="text" class="form-control" name="name"  ng-model="editOj.master" />
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label">广告主链接</label>
+        <input type="text" class="form-control" name="name" placeholder="" ng-model="editOj.mainUrl"  />
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label db">转发文案内容</label>
+        <textarea rows="3" class="form-control" name="name" placeholder="" ng-model="editOj.content" >
+            </textarea>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label db">时间:</label>
+        <input type="text" class="form-control" name="name" placeholder="" ng-model="editOj.time"  />
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label">总添加人数</label>
+        <input type="number" class="form-control" name="name"  ng-model="editOj.addNum" />
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label">删除人数</label>
+        <input type="number" class="form-control" name="name"  ng-model="editOj.subNum" />
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label">单日成交单数</label>
+        <input type="number" class="form-control" name="name"  ng-model="editOj.dealNum" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">总成交单数</label>
+        <input type="number" class="form-control" name="name"  ng-model="editOj.totalDealNum" />
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label">金额</label>
+        <input type="number" class="form-control" name="name"  ng-model="editOj.money" />
+    </div>
+
+    <div class="mt20 fix">
+        <button class="btn btn-primary" ng-click="save()">保存</button>
+        <button class="btn btn-link" ng-click="reset()">重置</button>
+    </div>
+
+</form>
+
+
+
+
+<div class="modal fade" id="searchProductionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true">x</button>
+                <h3 id="userMgrLabel">搜索产品</h3>
+            </div>
+            <div class="modal-body">
+
+                <form name="userForm" class="form-horizontal" role="form">
+                    <div class="form-group" >
+                        <label class="col-sm-2 control-label">搜索按</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="searchProType" selected value="name"> 产品名或编码
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="searchProType" value="tag"> 标签
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" ng-model="searchProType" value="summary">简介
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">关键词</label>
+                        <div class="col-sm-10">
+                            <ng-autocomplete class="ltw" ng-model="editRelation"
+                                             show-property="name"
+                                             delay="300"
+                                             theme="blue"
+                                             init-text=""
+                                             get-result="searchProduction(keyword)"
+                                             placeholder="搜索产品">
+                            </ng-autocomplete>
+                            <a class="btn btn-primary btn-xs ml10" ng-click="addProduction(editRelation)"><span
+                                    class="glyphicon glyphicon-plus"></span></a>
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+                <button class="btn btn-primary"
+                        data-dismiss="modal"
+                        aria-hidden="true"
+                >确定</button>
+            </div>
+        </div>
+    </div>

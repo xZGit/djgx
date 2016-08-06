@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="ng-app">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>大家闺秀信息管理系统中心</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Custom CSS -->
+
+  <link href="/app/css/lib.css" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
+  <link rel="stylesheet" href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+  <link href="/app/css/sb-admin-2.css" rel="stylesheet">
+  <!-- HTML5 Shim and    Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper" ng-controller="menu">
+
+  <div class="modal fade" id="changePwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-hidden="true">x
+          </button>
+          <h3 id="userMgrLabel">修改密码</h3>
+        </div>
+        <div class="modal-body">
+
+          <form name="userInfo" class="form-horizontal" role="form">
+
+            <div class="form-group">
+              <label for="itemSDescription" class="col-sm-2 control-label">旧密码</label>
+              <div class="col-sm-10">
+                <input type="password" ng-model="pwd.old" class="form-control" id="itemSDescription">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="itemSDescription" class="col-sm-2 control-label">新密码</label>
+              <div class="col-sm-10">
+                <input type="password" ng-model="pwd.new" class="form-control" id="itemSDescription">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="itemSDescription" class="col-sm-2 control-label">重复密码</label>
+              <div class="col-sm-10">
+                <input type="password" ng-model="pwd.new1" class="form-control" id="itemSDescription">
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+          <button class="btn btn-primary"
+                  data-dismiss="modal"
+                  aria-hidden="true"
+                  ng-click="savePwd(pwd)"
+          >保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">大家闺秀信息管理系统中心</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+      <!-- /.dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          欢迎您; {{user.username}}
+          <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+          <!--<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>-->
+          <!--</li>-->
+          <li><a data-toggle="modal" data-target="#changePwd"><i class="fa fa-gear fa-fw"></i>修改密码</a>
+          </li>
+          <li class="divider"></li>
+          <li><a href="/login/logout"><i class="fa fa-sign-out fa-fw"></i>登出</a>
+          </li>
+        </ul>
+        <!-- /.dropdown-user -->
+      </li>
+      <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+      <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+
+          <!--<li ng-repeat="path in paths"  ng-init="path.show = false" ng-class="{active: path.show}">-->
+          <!--<a  ng-click="path.show = !path.show"><span ng-bind="path.name"></span><span class="fa arrow"></span></a>-->
+          <!--<ul class="nav nav-second-level collapse " ng-class="{in: path.show}">-->
+          <li ng-repeat="subPath in paths">
+            <a ng-class="{active: location.path() == subPath.url}" href="#{{subPath.url}}" ng-bind="subPath.name"></a>
+          </li>
+          </ul>
+          <!-- /.nav-second-level -->
+          <!--</li>-->
+          <!--<li>-->
+
+        <!--</ul>-->
+      </div>
+      <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+  </nav>
+
+  <!-- Page Content -->
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <!--<h1 class="page-header">Blank</h1>-->
+        </div>
+
+        <div class="rel">
+          <div id="loading" class="spinner">
+            <div class="spinner-container container1">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+              <div class="circle1"></div>
+              <div class="circle2"></div>
+              <div class="circle3"></div>
+              <div class="circle4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rel">
+          <div ng-show="msg.msg!=null"  role="alert" class="msg alert alert-{{msg.level}}" ng-bind="msg.msg"></div>
+        </div>
+
+
+        <div class="mt20" ng-view></div>
+
+
+        <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!--<script src="../dist/js/sb-admin-2.js"></script>-->
+
+
+<!-- jQuery -->
+<script data-main="/app/js/main.js?333" src="/bower_components/requirejs/require.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+
+</body>
+
+</html>
